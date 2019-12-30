@@ -2,7 +2,7 @@
 # Please see https://i3wm.org/docs/userguide.html for a complete reference!
 #
 gaps inner 5
-gaps outer 5
+gaps outer 0
 set $mod Mod1
 
 # Font for window titles. Will also be used by the bar unless a different font
@@ -34,12 +34,12 @@ bindsym $mod+q kill
 bindsym $mod+d exec i3-dmenu-desktop --dmenu="dmenu -i -fn 'Hack:size=15'"
 
 #rofi settings 
-
 bindcode 133 --release exec ~/.config/rofi/menu/menu.sh
 bindsym $mod+Shift+q exec ~/.config/rofi/menu/powermenu.sh
 bindsym $mod+r exec rofi -no-auto-select -matching normal -show run -run-shell-command "termite --title=floating -e '{cmd}'"
 bindsym $mod+t exec rofi -no-auto-select -matching normal -show window
 bindsym $mod+f exec ~/.config/rofi/menu/find.sh
+bindsym $mod+a exec rofi -modi "clipboard:greenclip print" -show clipboard -run-command '{cmd}'
 # There also is the (new) i3-dmenu-desktop which only displays applications
 # shipping a .desktop file. It is a wrapper around dmenu, so you need that
 # installed.
@@ -80,7 +80,7 @@ bindsym $mod+Shift+space floating toggle
 bindsym $mod+space focus mode_toggle
 
 # focus the parent container
-bindsym $mod+a focus parent
+bindsym $mod+p focus parent
 
 # focus the child container
 #bindsym $mod+d focus child
@@ -125,7 +125,7 @@ bindsym $mod+Shift+0 move container to workspace $ws10
 # reload the configuration file
 bindsym $mod+Shift+c reload
 # restart i3 inplace (preserves your layout/session, can be used to upgrade i3)
-bindsym $mod+Shift+r restart
+bindsym $mod+Shift+r exec ~/.config/i3/script/restart.sh 
 # exit i3 (logs you out of your X session)
 bindsym $mod+Shift+e exec "i3-nagbar -t warning -m 'You pressed the exit shortcut. Do you really want to exit i3? This will end your X session.' -B 'Yes, exit i3' 'i3-msg exit'"
 # resize window (you can also use the mouse for that)
@@ -153,7 +153,6 @@ mode "resize" {
         bindsym $mod+r mode "default"
 }
 
-bindsym $mod+p mode "resize"
 focus_follows_mouse no
 #exec --no-startup-id ~/.my_scripts/startup.sh 
 #
